@@ -7,6 +7,8 @@ name = "pypi"
 groq = "*"
 speechrecognition = "*"
 pydub = "*"
+gtts = "*"
+elevenlabs = "*"
 
 [dev-packages]
 

@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 # Step1 : Setup audio recoder -> ffmpeg & portaudio
 
 import logging
@@ -7,6 +10,8 @@ AudioSegment.converter = r"C:\ffmpeg\bin\ffmpeg.exe"
 from io import BytesIO
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
 
 def record_audio(file_path, timeout=20, phrase_time_limit=None):
     """
@@ -39,9 +44,29 @@ def record_audio(file_path, timeout=20, phrase_time_limit=None):
     except Exception as e:
         logging.error(f"An error occurred: {e}")
 
-audio_filepath="patient_voice_test.mp3"
-#record_audio(file_path=audio_filepath)
+audio_filepath = "patient_voice_test.mp3"
+record_audio(file_path=audio_filepath)
 
 
 
-# Step2 : Setup speech to text model
+
+#Step2: Setup Speech to text–STT–model for transcription
+import os
+from groq import Groq
+
+GROQ_API_KEY=os.environ.get("GROQ_API_KEY")
+client = Groq(api_key=GROQ_API_KEY)
+stt_model="whisper-large-v3"
+
+
+    
+audio_file=open(audio_filepath, "rb")
+transcription=client.audio.transcriptions.create(
+    model=stt_model,
+    file=audio_file,
+    language="en"
+)
+
+print(transcription.text)
+
+  
