@@ -19,19 +19,27 @@ text_to_speech_with_gtts(input_text=input_text, output_filepath="gtts_testing.mp
 
 # Step 1b : Setup Text To Speech TTS Model with ElevenLabs
 import elevenlabs
-from elevenlabs.client import ElevenLabs
+from elevenlabs import voices, generate, save
 
 ELEVENLABS_API_KEY = os.environ.get("ELEVENLABS_API_KEY")
+elevenlabs.set_api_key(ELEVENLABS_API_KEY)
 
 def text_to_speech_with_elevenlabs(input_text, output_filepath):
-    client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
-    audio = client.generate(
+    # Get available voices
+    available_voices = voices()
+    # Find Aria's voice
+    aria_voice = next((voice for voice in available_voices if voice.name == "Aria"), None)
+    
+    if aria_voice is None:
+        raise Exception("Aria voice not found")
+    
+    audio = generate(
         text=input_text,
-        voice="Aria",
-        model="eleven_turbo_v2",
-        output_format="mp3_22050_32"
+        voice=aria_voice,
+        model="eleven_turbo_v2"
     )
-    elevenlabs.save(audio, output_filepath)
+    
+    save(audio, output_filepath)
 
 text_to_speech_with_elevenlabs(input_text=input_text, output_filepath="elevenlabs_testing.mp3")
 
