@@ -3,6 +3,7 @@
 import logging
 import speech_recognition as sr
 from pydub import AudioSegment
+AudioSegment.converter = r"C:\ffmpeg\bin\ffmpeg.exe"
 from io import BytesIO
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
