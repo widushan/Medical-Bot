@@ -18,7 +18,7 @@ def text_to_speech_with_gtts_old(input_text, output_filepath):
     audioobj.save(output_filepath)
 
 input_text = "Hi this is Ai with Pasindu!"
-# text_to_speech_with_gtts_old(input_text=input_text, output_filepath="gtts_testing.mp3")
+text_to_speech_with_gtts_old(input_text=input_text, output_filepath="gtts_testing.mp3")
 
 
 
@@ -96,7 +96,7 @@ def text_to_speech_with_gtts(input_text, output_filepath):
     play_audio_file(output_filepath)
 
 input_text = "Hi this is Ai with Pasindu!, Auto play testing"
-text_to_speech_with_gtts(input_text=input_text, output_filepath="gtts_testing_autoplay.mp3")
+# text_to_speech_with_gtts(input_text=input_text, output_filepath="gtts_testing_autoplay.mp3")
 
 
 def text_to_speech_with_elevenlabs(input_text, output_filepath):
@@ -117,7 +117,7 @@ def text_to_speech_with_elevenlabs(input_text, output_filepath):
     save(audio, output_filepath)
     play_audio_file(output_filepath)
 
-# text_to_speech_with_elevenlabs(input_text=input_text, output_filepath="elevenlabs_testing.mp3")
+# text_to_speech_with_elevenlabs(input_text=input_text, output_filepath="elevenlabs_testing_autoplay.mp3")
 
 
 
