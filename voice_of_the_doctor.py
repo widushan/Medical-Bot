@@ -102,11 +102,11 @@ input_text = "Hi this is Ai with Pasindu!, Auto play testing"
 def text_to_speech_with_elevenlabs(input_text, output_filepath):
     # Get available voices
     available_voices = voices()
-    # Find Aria's voice
-    aria_voice = next((voice for voice in available_voices if voice.name == "Aria"), None)
+    # Find Rachel's voice
+    aria_voice = next((voice for voice in available_voices if voice.name == "Rachel"), None)
     
     if aria_voice is None:
-        raise Exception("Aria voice not found")
+        raise Exception("Rachel voice not found")
     
     audio = generate(
         text=input_text,
